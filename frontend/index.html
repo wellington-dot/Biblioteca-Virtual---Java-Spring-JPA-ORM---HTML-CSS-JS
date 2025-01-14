@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Biblioteca Virtual</title>
+</head>
+<body>
+    <div class= "container">
+        <h1 id="titulo">BIBLIOTECA VIRTUAL</h1>
+
+        <div class ="contInicial">
+            <h2 id="msgInicial">Escolha uma opção:</h2>
+            <button id="btnCadasUser">Cadastrar usuário</button>
+            <button id="btnCadasBook">Cadastrar Livro</button>
+
+            <p id="msgCadastro">Já é cadastrado?, sinta-se a vontade para olhar nosso catálogo!</p>
+            <button id="btnCatalogoInicial">Ver catálogo</button>
+        </div>
+
+        <div class= "catalogo">
+
+        </div>
+    </div>
+
+    <script>
+        const btnCadasUser = document.getElementById('btnCadasUser');
+        const btnCadasBook = document.getElementById('btnCadasBook');
+        const btnCatalogoInicial = document.getElementById('btnCatalogoInicial');
+
+        btnCadasUser.onclick = function (){
+            window.location.href = '../frontend/paginas/cadastrarUser.html';
+        };
+
+        btnCadasBook.onclick = function (){
+            window.location.href = '../frontend/paginas/cadastrarBook.html';
+        };
+
+        btnCatalogoInicial.onclick = function (){
+            window.location.href = '../frontend/paginas/Catalogo.html';
+        };
+    </script>
+</body>
+</html>

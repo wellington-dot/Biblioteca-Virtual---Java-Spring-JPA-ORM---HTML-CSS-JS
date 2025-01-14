@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastrarbookStyle.css">
+    <title>Cadastrar Livros</title>
+</head>
+<body>
+    <h1 id="titulo">CADASTRAR LIVROS </h1>
+
+    <div class="form-container">
+        <form id="bookForm" action="javascript:void(0);" method="POST">
+            <label for="name">Nome: </label>
+            <input type="text" id="name" required>
+
+            <label for="nameAuthor">Nome autor: </label>
+            <input type="text" id="nameAuthor" required>
+
+            <label for="publishYear">Data de publicação: </label>
+            <input type="number" id="publishYear" required>
+
+            <label for="numPages">Numero de páginas: </label>
+            <input type="number" id="numPages" required>
+
+            <label for="description">Descrição: </label>
+            <textarea type="text" id="description" required></textarea>
+
+            <label for="price">Preço: </label>
+            <input type="number" id="price" required>
+
+            <label for="imgUrl">Url imagem: </label>
+            <input type="text" id="imgUrl" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+
+        const form = document.getElementById('bookForm');
+
+        form.addEventListener('submit', function(event){
+            event.preventDefault();
+
+            console.log('Formulário enviado');
+
+            const formData = new FormData(form);
+
+            const data = {
+                name: formData.get('name'),
+                nameAuthor: formData.get('nameAuthor'),
+                publishYear: formData.get('publishYear'),
+                numPages: formData.get('numPages'),
+                description: formData.get('description'),
+                price: formData.get('price'),
+                imgUrl: formData.get('imgUrl')
+            };
+
+            fetch('http://localhost:8080/books', {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Sucesso:', data);
+                })
+                .catch((error) => {
+                    console.error('Erro:', error);
+                });
+        });
+    </script>
+</body>
+</html>
