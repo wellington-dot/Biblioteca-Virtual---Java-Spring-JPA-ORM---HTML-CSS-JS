@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    background-color: rgba(241, 73, 41, 0.4);
+    background-color: rgba(213, 255, 66, 0.93);
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -34,8 +34,8 @@ body {
     cursor: pointer;
     font-family: Times, Times New Roman, serif;
     font-size: 20px;
-    background-color: brown;
-    color: white;
+    background-color: #ffffff;
+    color: #050505;
 }
 
 #titulo {
