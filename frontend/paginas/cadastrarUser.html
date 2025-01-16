@@ -2,9 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/cadastrarbookStyle.css">
     <title>Cadastrar usuário</title>
 </head>
+
 <body>
 
+    <button id="btnBack" type="back">Voltar</button>
+
+    <div id="blocoMsg">
+        <h1 id="titulo">CADASTRAR USUÁRIO </h1>
+        <p id="msgTitulo">Aqui você pode adicionar novos usuários, aproveite!</p>
+    </div>
+
+    <div class="form-container">
+        <form id="userForm" method="POST">
+            <label for="name">Nome: </label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="dateOfBirth">Data de Nascimento: </label>
+            <input type="text" name="dateOfBirth" id="dateOfBirth" required>
+
+            <label for="favoriteBook">Livro favorito: </label>
+            <input type="text" name="favoriteBook" id="favoriteBook" required>
+
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email" required>
+
+            <label for="password">Senha: </label>
+            <input type="text" name="password" id="password" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+    </div>
+
+    <script>
+
+        const btnBack = document.getElementById('btnBack');
+
+        btnBack.onclick = function (){
+            window.location.href = '../index.html';
+        };
+
+        document.getElementById("userForm").addEventListener("submit", function (event){
+        event.preventDefault();
+
+        let formData = new FormData(this);
+
+        let user = {
+        name : formData.get("name"),
+        dateOfBirth : formData.get("dateOfBirth"),
+        favoriteBook : formData.get("favoriteBook"),
+        email : formData.get("email"),
+        password : formData.get("password")
+        };
+
+        fetch("http://localhost:8080/user", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+        })
+        .then(response => response.json())
+        .then(data => {
+        alert("Usuario cadastrado.");
+        console.log(data)
+        })
+        .catch(error => {
+        alert("Erro ao cadastrar usuario.");
+        console.error("Error:", error);
+        });
+        });
+
+    </script>
 </body>
 </html>

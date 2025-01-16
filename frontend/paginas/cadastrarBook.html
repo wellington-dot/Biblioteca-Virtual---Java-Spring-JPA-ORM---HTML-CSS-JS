@@ -18,25 +18,25 @@
     <div class="form-container">
         <form id="bookForm" method="POST">
             <label for="name">Nome: </label>
-            <input type="text" id="name" required>
+            <input type="text" name="name" id="name" required>
 
             <label for="nameAuthor">Nome autor: </label>
-            <input type="text" id="nameAuthor" required>
+            <input type="text" name="nameAuthor" id="nameAuthor" required>
 
-            <label for="publishYear">Data de publicação: </label>
-            <input type="number" id="publishYear" required>
+            <label for="publishYear">Ano de publicação: </label>
+            <input type="number" name="publishYear" id="publishYear" required>
 
             <label for="numPages">Numero de páginas: </label>
-            <input type="number" id="numPages" required>
+            <input type="number" name="numPages" id="numPages" required>
 
             <label for="description">Descrição: </label>
-            <textarea id="description" required></textarea>
+            <textarea id="description" name="description" required></textarea>
 
             <label for="price">Preço: </label>
-            <input type="number" id="price" required>
+            <input type="number" name="price" id="price" required>
 
             <label for="imgUrl">Url imagem: </label>
-            <input type="text" id="imgUrl" required>
+            <input type="text" name="imgUrl" id="imgUrl" required>
 
             <button type="submit">Enviar</button>
         </form>
@@ -50,18 +50,38 @@
             window.location.href = '../index.html';
         };
 
-        const form = document.getElementById('bookForm');
-
-        form.addEventListener('submit', event => {
+        document.getElementById("bookForm").addEventListener("submit", function (event){
             event.preventDefault();
 
-            console.log('Formulário enviado');
+            let formData = new FormData(this);
 
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
+            let book = {
+                name : formData.get("name"),
+                nameAuthor : formData.get("nameAuthor"),
+                publishYear : formData.get("publishYear"),
+                numPages : formData.get("numPages"),
+                description : formData.get("description"),
+                price : formData.get("price"),
+                imgUrl : formData.get("imgUrl")
+            };
 
-            console.log(data);
-        })
+            fetch("http://localhost:8080/books", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(book)
+            })
+                .then(response => response.json())
+                    .then(data => {
+                        alert("Livro cadastrado.");
+                        console.log(data)
+                    })
+                    .catch(error => {
+                        alert("Erro ao cadastrar livro.");
+                        console.error("Error:", error);
+                    });
+        });
 
 
     </script>

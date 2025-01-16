@@ -25,7 +25,7 @@ public class BookController {
     @CrossOrigin(origins = "http://localhost:63342")
     @PostMapping
     public ResponseEntity<BookDTO> insertBook (@RequestBody BookDTO book){
-         book = service.insertBook(book);
+        book = service.insertBook(book);
         return ResponseEntity.ok(book);
     }
 }
