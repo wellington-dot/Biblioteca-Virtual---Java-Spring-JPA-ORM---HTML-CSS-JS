@@ -3,8 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Catálogo</title>
+    <link rel="stylesheet" href="css/catalogoStyle.css">
 </head>
 <body>
+    <div id="cont-header">
+        <button id="btnBack" type="back">Voltar</button>
+        <h1>Catálogo de livros</h1>
+    </div>
+
+    <div class="container" id="livros-container">
+        <!--<div class="card">
+            <img src="https://m.media-amazon.com/images/I/815iPX0SgkL._SY342_.jpg" alt="">
+            <h3>O poder do hábito</h3>
+        </div>-->
+    </div>
+
+    <script>
+
+        const btnBack = document.getElementById('btnBack');
+
+        btnBack.onclick = function (){
+            window.location.href = '../index.html';
+        };
+
+        function carregar(){
+            fetch('http://localhost:8080/books')
+                .then(response => response.json())
+                .then(livros => {
+                    console.log(livros);
+
+                    const container = document.querySelector("#livros-container")
+
+                    const livrosArray = livros.content || [];
+
+                    livrosArray.map(livro => {
+                        const card = document.createElement("div")
+                        card.classList.add("card")
+
+                        const img = document.createElement("img");
+                        img.src = livro.imgUrl
+                        img.alt = livro.name
+
+                        const titulo = document.createElement("h3")
+                        titulo.textContent = livro.name
+
+                        card.appendChild(img)
+                        card.appendChild(titulo)
+                        container.appendChild(card)
+                    })
+                })
+        }
+        carregar();
+    </script>
 
 </body>
 </html>

@@ -16,6 +16,7 @@ public class BookController {
     @Autowired
     private BookService service;
 
+    @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping
     public ResponseEntity<Page<BookDTO>> searchBooks (Pageable pageable){
         Page<BookDTO> dto = service.searchBooks(pageable);

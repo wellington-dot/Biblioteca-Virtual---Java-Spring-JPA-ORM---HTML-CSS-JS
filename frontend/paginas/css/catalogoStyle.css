@@ -1,0 +1,46 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+
+    width: 200px;
+    text-align: center;
+    box-sizing: border-box;
+
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.card h3{
+    margin-top: 8px;
+}
+
+#btnBack{
+    background-color: rgba(213, 255, 66, 0.93);
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#cont-header{
+    display: flex;
+    align-items: center;
+}
+
+#cont-header h1{
+    margin-left: 480px;
+    font-family: Times, Times New Roman, serif;
+    font-size: 35px;
+}
